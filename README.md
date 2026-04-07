@@ -12,7 +12,7 @@ Aquest repositori conte les diferents pràctiques realitzades durant el curs
 
 Aquest repositori està preparat per ser publicat amb GitHub Pages.  
 Pots veure la versió web pública a:
-https://pauserra-ie.github.io/ISOPJ1/
+https://pauserra-ie.github.io/ISOPJ2/
 
 ---
 

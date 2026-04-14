@@ -3,138 +3,130 @@ layout: default
 title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
 ---
 
-#Sprint 1: Instal·lació, Configuració Inicial i Programari de Base (WINDOWS)
-
----
-layout: default
-title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
----
-
-# Sprint 1: Instal·lació, Configuració Inicial i Programari de Base
+# Sprint 1: Instal·lació, Configuració Inicial i Programari de Base (WINDOWS)
+## Índex
 
 ## Índex
-1. [Introducció](#introducció)
-2. [Fase 1: Instal·lació del Sistema Operatiu](#fase-1-instal·lació-del-sistema-operatiu)
-3. [Fase 2: Punts de Restauració](#fase-2-punts-de-restauració)
-4. [Fase 3: Llicències de Windows](#fase-3-llicències-de-windows)
-5. [Fase 4: Gestor d'Arrencada](#fase-4-gestor-darrencada)
-6. [Fase 5: Xarxa Bàsica](#fase-5-xarxa-bàsica)
-7. [Fase 6: Comandes Generals](#fase-6-comandes-generals)
-8. [Fase 7: Instal·lació d'Aplicacions](#fase-7-instal·lació-daplicacions)
-
----
-
-## Introducció
-Aquest document detalla el procés d'instal·lació i configuració inicial d'un entorn Windows. L'objectiu és establir una base sòlida de treball, assegurant la recuperació del sistema, la legalitat del programari i el control mitjançant línia de comandes.
-
----
-
-## Fase 1: Instal·lació del Sistema Operatiu
-Preparació de l'entorn virtualitzat i desplegament del sistema.
-
-### Pas 1-5: Configuració de la Màquina Virtual
- Crear una nova màquina a **VirtualBox**. Li carreguem la **ISO de W10**
-   
-<img width="874" height="642" alt="image" src="https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458" />
-
- Assignar un mínim de **4 GB de RAM** i un disc dur de **40 GB**.
-<img width="756" height="343" alt="image" src="https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d" />
-
- Carregar la imatge **ISO** de Windows 10 o 11.
-
-<img width="716" height="500" alt="image" src="https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a" />
-
- Arrencar la màquina i seguir l'assistent (idioma, regió).
-  <img width="639" height="490" alt="image" src="https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c" />
-Tenim dues opcions. En aquest cas faré una instalació personalitzada :
-<img width="662" height="647" alt="image" src="https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861" />
-
-Triem on volem fer la instalació
-<img width="678" height="639" alt="image" src="https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce" />
-
-Esperem a que acabi la instlació
-
-<img width="643" height="645" alt="image" src="https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30" />
+1. [Fase 1: Instal·lació del Sistema Operatiu](#fase-1-instal·lació-del-sistema-operatiu)
+2. [Fase 2: Punts de Restauració](#fase-2-punts-de-restauració)
+3. [Fase 3: Llicències de Windows](#fase-3-llicències-de-windows)
+4. [Fase 4: Gestor d'Arrencada](#fase-4-gestor-darrencada)
+5. [Fase 5: Xarxa Bàsica](#fase-5-xarxa-bàsica)
+6. [Fase 6: Comandes Generals](#fase-6-comandes-generals)
+7. [Fase 7: Instal·lació d'Aplicacions](#fase-7-instal·lació-daplicacions)
 
 
+## Fase 1: Instal·lació del sistema operatiu
 
-. Configuracio
-  Seleccionem regió i distribució del teclat
-<img width="1024" height="771" alt="image" src="https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393" />
+### 1.1 Creació de la màquina virtual
 
-Configurem l'usuari i contrasenya
-<img width="630" height="612" alt="2026-04-14_09-27" src="https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59" />
+El primer pas és definir una nova instància a **VirtualBox**. En el procés de creació, seleccionem el tipus de sistema operatiu i la versió corresponent. També aprofitem per carregar la **ISO de Windows 10/11**.
 
-comprovem que inicia correctament
-<img width="1025" height="827" alt="image" src="https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c" />
+\<img width="874" height="642" alt="image" src="[https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458](https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458)" /\>
 
----
+### 1.2 Assignació de recursos
 
-## Fase 2: Punts de Restauració
-Gestió de la seguretat davant de canvis crítics.
+Per garantir un rendiment òptim del sistema operatiu, assignem un mínim de **4 GB de memòria RAM** i un disc dur virtual de **40 GB**.
 
-### Pas 6-8: Activació i creació
-1. Cercar "Crear un punt de restauració" al menú Inici.
-   
-2. **Activar la protecció** per a la unitat C:.
+\<img width="756" height="343" alt="image" src="[https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d](https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d)" /\>
 
-3. Crear un punt manualment anomenat "Post-Instal·lació".
+### 1.3 Selecció del medi d'instal·lació
 
-> **[CAPTURA DE PANTALLA: Finestra de Protecció del sistema mostrant el punt creat]**
+Verifiquem que la imatge ISO del sistema s'ha muntat correctament a la unitat òptica virtual abans d'iniciar l'arrencada.
 
-### Pas 9-10: Prova de restauració
-1. Instal·lar qualsevol aplicació de prova.
-2. Executar la restauració del sistema per verificar que l'aplicació desapareix i el sistema torna a l'estat anterior.
+\<img width="716" height="500" alt="image" src="[https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a](https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a)" /\>
 
----
+### 1.4 Inici de l'assistent i configuració regional
+
+Arrenquem la màquina i seguim els primers passos de l'assistent d'instal·lació de Windows, on definim l'idioma i el format de regió.
+
+\<img width="639" height="490" alt="image" src="[https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c](https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c)" /\>
+
+### 1.5 Tipus d'instal·lació
+
+L'assistent ens ofereix dues vies: Actualització o Personalitzada. Per a una instal·lació neta des de zero, seleccionem l'opció **Personalitzada**.
+
+\<img width="662" height="647" alt="image" src="[https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861](https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861)" /\>
+
+### 1.6 Gestió de particions
+
+Triem l'espai sense assignar del disc virtual (els 40 GB prèviament creats) per procedir amb la instal·lació dels fitxers del sistema.
+
+\<img width="678" height="639" alt="image" src="[https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce](https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce)" /\>
+
+### 1.7 Procés de còpia de fitxers
+
+Esperem que el sistema completi la còpia, preparació i instal·lació de les característiques i actualitzacions inicials.
+
+\<img width="643" height="645" alt="image" src="[https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30](https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30)" /\>
+
+### 1.8 Configuració post-instal·lació
+
+Un cop finalitzada la càrrega de fitxers, seleccionem la regió final i la distribució del teclat (Espanyol/Català) per adaptar l'entorn a l'usuari.
+
+\<img width="1024" height="771" alt="image" src="[https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393](https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393)" /\>
+
+### 1.9 Creació del compte d'usuari
+
+Configurem el nom d'usuari principal i establim una contrasenya segura per accedir al sistema.
+
+\<img width="630" height="612" alt="2026-04-14\_09-27" src="[https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59](https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59)" /\>
+
+### 1.10 Verificació final
+
+Un cop acabada la configuració de privadesa i perfil, comprovem que el sistema arriba a l'escriptori i funciona correctament.
+
+\<img width="1025" height="827" alt="image" src="[https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c](https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c)" /\>
+
+-----
+
+## Fase 2: Punts de restauració
+
+Creació de punts de seguretat per poder revertir el sistema a un estat anterior en cas d'error o canvis no desitjats.
+
+  * **Pas 6:** Cercar "Crear un punt de restauració" al menú d'inici.
+  * **Pas 7:** Activar la protecció del sistema al disc C:.
+  * **Pas 8:** Crear manualment un punt de restauració identificant-lo amb un nom clar (ex: "Post-instal·lació").
+  * **Pas 9:** Realitzar una modificació (instal·lació d'un petit programa).
+  * **Pas 10:** Restaurar el sistema i verificar que el canvi s'ha desfet.
+
+-----
 
 ## Fase 3: Llicències de Windows
-Verificació del tipus de contracte i activació.
 
-### Pas 11-13: Verificació
-1. Consultar l'estat a **Configuració > Sistema > Activació**.
-2. Executar `slmgr /xpr` al CMD per veure la caducitat de la llicència.
+Anàlisi del mètode d'activació i tipologia de llicència instal·lada.
 
-> **[CAPTURA DE PANTALLA: Resultat de la comanda slmgr /xpr]**
+  * **Pas 11 i 12:** Verificar l'estat d'activació a "Configuració" \> "Sistema" \> "Activació".
+  * **Pas 13:** Executar `slmgr /xpr` al Símbol del sistema per veure la data de caducitat o si l'activació és permanent.
+  * **Pas 14:** Investigar les diferències entre llicències OEM, Retail i de Volum.
+  * **Pas 15:** Consultar el cost de mercat de la versió instal·lada a les fonts oficials.
 
-### Pas 14-15: Recerca
-* Identificar si la llicència és Retail, OEM o Volum.
-* Consultar el preu actual oficial segons la versió (Home/Pro).
+-----
 
----
+## Fase 4: Gestor d'arrencada
 
-## Fase 4: Gestor d'Arrencada
-Configuració del llançament del sistema.
+Estudi de la configuració del BCD (Boot Configuration Data).
 
-### Pas 16-21: BCDEDIT
-1. Obrir CMD com a administrador.
-2. Executar `bcdedit` per analitzar el **Boot Manager** i el **Boot Loader**.
-3. Identificar el fitxer de càrrega (`winload.efi`) i el temps d'espera (`timeout`).
+  * **Pas 16 i 17:** Executar `bcdedit` amb permisos d'administrador.
+  * **Pas 18:** Identificar el **Boot Manager** (gestiona l'elecció de SO) i el **Boot Loader** (carrega el kernel del SO triat).
+  * **Pas 19:** Analitzar camps com `timeout` (temps d'espera) i `path` (fitxer d'arrencada com `winload.efi`).
+  * **Pas 20 i 21:** Respondre a les qüestions tècniques sobre la ubicació de la partició d'arrencada i els fitxers crítics detectats.
 
-> **[CAPTURA DE PANTALLA: Terminal amb la sortida de la comanda bcdedit]**
+-----
 
----
+## Fase 5: Xarxa bàsica
 
-## Fase 5: Xarxa Bàsica
-Connectivitat i diagnòstic inicial.
+Configuració i test de connectivitat.
 
-### Pas 22-26: Configuració IP
-1. Utilitzar `ipconfig` per veure els paràmetres actuals.
-2. Validar si s'usa DHCP o IP fixa.
-3. Fer un `ping google.com` per confirmar la navegació.
+  * **Pas 23:** Visualitzar la configuració actual amb `ipconfig`.
+  * **Pas 24:** Configurar el mode DHCP per rebre paràmetres automàtics de VirtualBox.
+  * **Pas 25:** Provar la configuració d'una IP estàtica dins del mateix rang de xarxa.
+  * **Pas 26:** Utilitzar `ping google.com` per validar la sortida a l'exterior.
 
-> **[CAPTURA DE PANTALLA: Terminal fent ping correctament]**
+-----
 
----
+## Fase 6: Comandes generals
 
-## Fase 6: Comandes Generals
-Eines d'administració per terminal.
-
-### CMD vs PowerShell
-* **CMD:** Consola d'ordres clàssica.
-* **PowerShell:** Entorn de scripting avançat per a automatització.
-
-### Comandes principals
 | Comanda | Acció |
 | :--- | :--- |
 | `dir` | Veure fitxers. |
@@ -146,14 +138,24 @@ Eines d'administració per terminal.
 | `tree` | Estructura de directoris. |
 | `shutdown /s /t 0` | Apagar l'equip. |
 
----
 
-## Fase 7: Instal·lació d'Aplicacions
-Desplegament del programari de l'usuari.
+Ús de la CLI (Command Line Interface) per a la gestió del sistema.
 
-### Pas 34-40: Gestió de programari
-1. Instal·lar eines essencials (Chrome, VS Code) des del navegador.
-2. Utilitzar la **Microsoft Store** per a aplicacions de confiança.
-3. Provar de desinstal·lar una aplicació des del panell de configuració.
+  * **Pas 28:** Comparar `cmd` vs `PowerShell` (PowerShell permet treballar amb objectes i és el substitut modern).
+  * **Pas 29 a 32:** Explorar comandes de fitxers (`dir`, `mkdir`, `del`), de sistema (`tasklist`, `systeminfo`, `hostname`) i de xarxa (`netstat`).
+  * **Pas 33:** Interpretar les dades de rendiment i processos obtingudes.
 
-> **[CAPTURA DE PANTALLA: Llista d'aplicacions instal·lades a la Configuració]**
+-----
+
+## Fase 7: Instal·lació d'aplicacions
+
+Gestió del programari de l'estació de treball.
+
+  * **Pas 34 a 36:** Descarregar i instal·lar programari extern (ex: VS Code o Chrome) mitjançant el navegador.
+  * **Pas 37:** Utilitzar la Microsoft Store per instal·lar una eina nativa.
+  * **Pas 39 i 40:** Realitzar el procés de desinstal·lació i verificar a la llista de programes que no queden residus.
+
+
+
+
+

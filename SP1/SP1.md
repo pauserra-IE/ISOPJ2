@@ -146,10 +146,31 @@ Estudi de la configuració del BCD (Boot Configuration Data).
   * **Pas 16 i 17:** Executar `bcdedit` amb permisos d'administrador.
  <img width="758" height="687" alt="image" src="https://github.com/user-attachments/assets/7aa46914-8c04-4d0a-924a-712da743e755" />
 
-  * **Pas 18:** Identificar el **Boot Manager** (gestiona l'elecció de SO) i el **Boot Loader** (carrega el kernel del SO triat).
-  * **Pas 19:** Analitzar camps com `timeout` (temps d'espera) i `path` (fitxer d'arrencada com `winload.efi`).
-  * **Pas 20 i 21:** Respondre a les qüestions tècniques sobre la ubicació de la partició d'arrencada i els fitxers crítics detectats.
 
+  * **Pas 18:** Identificar el **Boot Manager** (gestiona l'elecció de SO) i el **Boot Loader** (carrega el kernel del SO triat).
+
+ **Boot Manager**
+<img width="546" height="198" alt="image" src="https://github.com/user-attachments/assets/d757def4-9410-4b66-8ee1-dae7327972e6" />
+**Boot Loader**
+<img width="532" height="282" alt="image" src="https://github.com/user-attachments/assets/8e9bdc66-2d9a-4dd7-b5dc-840626d7de22" />
+
+
+
+  * **Pas 19:** Analitzar camps com `timeout` (temps d'espera) i `path` (fitxer d'arrencada com `winload.efi`).
+<img width="520" height="151" alt="image" src="https://github.com/user-attachments/assets/302a85a2-2206-4281-a4bd-4538951c0933" />
+
+* **Camp `timeout`:** Es troba a la secció del Boot Manager i té un valor de **`30`**. Indica que el sistema esperarà 30 segons abans d'arrencar automàticament l'opció per defecte (Windows 10).
+* **Camp `path`:** El veiem a la secció del Boot Loader. La ruta és **`\Windows\system32\winload.exe`**. 
+    * *Nota important:* El fet que acabi en `.exe` i no en `.efi` ens indica de manera pràcticament segura que aquest sistema està instal·lat en mode **Legacy BIOS** (o amb el mòdul de compatibilitat CSM activat), i no en mode UEFI pur.
+ 
+  * **Pas 20 i 21:** Respondre a les qüestions tècniques sobre la ubicació de la partició d'arrencada i els fitxers crítics detectats.
+* **Ubicació de les particions (Device i OSDevice):**
+    * **Partició d'arrencada (On és el Boot Manager):** Com vèiem abans, el Boot Manager està a **`partition=\Device\HarddiskVolume1`** (aquesta és la petita partició reservada pel sistema on s'allotgen els fitxers físics d'arrencada com el BCD).
+    * **Partició del Sistema Operatiu (On és el Boot Loader i el SO):** A la secció del carregador veiem que els camps `device` i `osdevice` apunten a la **`partition=C:`**. Aquesta és la partició principal on està instal·lat Windows 10.
+* **Fitxers crítics detectats i referenciats:**
+    * **`winload.exe`**: És el fitxer crític identificat pel camp `path`. La seva funció és carregar el kernel de Windows (Ntoskrnl.exe) i els controladors bàsics de dispositiu des de la carpeta `\Windows\system32` (marcada pel camp `systemroot`).
+    * **Entorn de recuperació:** S'observa l'existència d'un identificador de recuperació (`recoverysequence`) i l'opció `recoveryenabled` en **`Yes`**, la qual cosa indica que l'entorn de recuperació de Windows (WinRE) està actiu i enllaçat a aquest procés d'arrencada per a casos de fallada.
+      
 -----
 
 ## Fase 5: Xarxa bàsica
@@ -192,6 +213,14 @@ Gestió del programari de l'estació de treball.
   * **Pas 34 a 36:** Descarregar i instal·lar programari extern (ex: VS Code o Chrome) mitjançant el navegador.
   * **Pas 37:** Utilitzar la Microsoft Store per instal·lar una eina nativa.
   * **Pas 39 i 40:** Realitzar el procés de desinstal·lació i verificar a la llista de programes que no queden residus.
+
+
+
+
+
+
+
+
 
 
 

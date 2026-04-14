@@ -194,15 +194,57 @@ Aquesta comanda permet obtenir informació com l’adreça IP assignada, la màs
 
 ---
 
+Perfecte — t’ho refaig amb estil de **documentació tècnica en plural (“anem a…”)** i amb el **Pas 24 molt més detallat**:
+
+---
+
+## Fase 5: Xarxa bàsica
+
+Configuració i test de connectivitat.
+
+En aquesta fase realitzem la configuració bàsica de xarxa i comprovem el correcte funcionament de la connectivitat mitjançant DHCP, IP estàtica i proves de comunicació externa.
+
+---
+
+### Pas 23: Visualització de la configuració de xarxa amb `ipconfig`
+
+Es visualitza la configuració actual de la xarxa mitjançant la comanda `ipconfig` des del símbol del sistema.
+
+```bash id="k9q8x1"
+ipconfig
+```
+
+Aquesta comanda permet consultar informació com l’adreça IP assignada, la màscara de subxarxa i la porta d’enllaç predeterminada.
+
+**Captura de pantalla:**
+
+<img width="502" height="376" alt="2026-04-14_12-21" src="https://github.com/user-attachments/assets/fb2c5b7b-c987-4cfd-abc9-a133b06ec4ee" />
+
+---
+
 ### Pas 24: Configuració del mode DHCP
 
-Es configura l’adaptador de xarxa en mode DHCP per tal d’obtenir automàticament els paràmetres de xarxa proporcionats per VirtualBox o el router.
+Anem a configurar l’adaptador de xarxa en mode DHCP per tal d’obtenir automàticament els paràmetres de xarxa proporcionats per VirtualBox o pel router.
 
+Per fer-ho, anem a seguir els passos següents:
 
+1. Anem al **Panell de control**
+2. Entrem a **Xarxa i Internet**
+3. Cliquem a **Centre de xarxes i recursos compartits**
+4. A la part esquerra, seleccionem **Canvia la configuració de l’adaptador**
+5. Fem clic dret sobre la connexió de xarxa activa i seleccionem **Propietats**
+6. Seleccionem **Protocol d’Internet versió 4 (IPv4)** i tornem a clicar **Propietats**
+7. Activem les opcions:
+
+   * **Obtenir una adreça IP automàticament**
+   * **Obtenir l’adreça del servidor DNS automàticament**
+8. Acceptem i guardem els canvis
+
+Amb això deixem la configuració en mode automàtic perquè el sistema rebi la configuració de xarxa directament del servidor DHCP.
 
 <img width="816" height="586" alt="2026-04-14_12-22" src="https://github.com/user-attachments/assets/7a6a2c3f-a04f-4192-9a07-44e4e70ce303" />
 
----
+
 
 ### Pas 25: Configuració d’una IP estàtica
 

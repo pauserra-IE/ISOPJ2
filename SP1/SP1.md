@@ -177,10 +177,61 @@ Estudi de la configuració del BCD (Boot Configuration Data).
 
 Configuració i test de connectivitat.
 
-  * **Pas 23:** Visualitzar la configuració actual amb `ipconfig`.
-  * **Pas 24:** Configurar el mode DHCP per rebre paràmetres automàtics de VirtualBox.
-  * **Pas 25:** Provar la configuració d'una IP estàtica dins del mateix rang de xarxa.
-  * **Pas 26:** Utilitzar `ping google.com` per validar la sortida a l'exterior.
+En aquesta fase es realitza la configuració bàsica de xarxa i la comprovació del funcionament correcte de la connectivitat mitjançant DHCP, IP estàtica i proves de comunicació externa.
+
+---
+
+### Pas 23: Visualització de la configuració de xarxa amb `ipconfig`
+
+Es visualitza la configuració actual de la xarxa mitjançant la comanda 
+```
+ipconfig
+```
+
+Aquesta comanda permet obtenir informació com l’adreça IP assignada, la màscara de subxarxa i la porta d’enllaç predeterminada.
+
+<img width="502" height="376" alt="2026-04-14_12-21" src="https://github.com/user-attachments/assets/fb2c5b7b-c987-4cfd-abc9-a133b06ec4ee" />
+
+---
+
+### Pas 24: Configuració del mode DHCP
+
+Es configura l’adaptador de xarxa en mode DHCP per tal d’obtenir automàticament els paràmetres de xarxa proporcionats per VirtualBox o el router.
+
+
+
+<img width="816" height="586" alt="2026-04-14_12-22" src="https://github.com/user-attachments/assets/7a6a2c3f-a04f-4192-9a07-44e4e70ce303" />
+
+---
+
+### Pas 25: Configuració d’una IP estàtica
+
+Es configura manualment una adreça IP dins del mateix rang de xarxa per comprovar el funcionament de la configuració estàtica.
+
+S’introdueixen els valors següents:
+
+* Adreça IP: dins del rang de la xarxa local
+* Màscara de subxarxa: segons configuració de la xarxa
+* Porta d’enllaç: IP del router
+* DNS: servidor DNS públic (ex. 8.8.8.8)
+
+<img width="414" height="473" alt="2026-04-14_12-29" src="https://github.com/user-attachments/assets/742dbbf3-2b11-4c43-beb8-9f218e407a3a" />
+
+---
+
+### Pas 26: Prova de connectivitat amb `ping`
+
+Es comprova la connectivitat a Internet mitjançant la comanda `ping` cap a un domini extern.
+
+```
+ping google.com
+```
+
+Aquesta prova permet verificar la resolució DNS i la connectivitat amb servidors externs.
+
+
+
+<img width="506" height="476" alt="image" src="https://github.com/user-attachments/assets/80ae1005-50e7-4981-9a80-624e06ace766" />
 
 -----
 

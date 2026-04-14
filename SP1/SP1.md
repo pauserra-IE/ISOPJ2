@@ -85,10 +85,23 @@ Un cop acabada la configuració de privadesa i perfil, comprovem que el sistema 
 Creació de punts de seguretat per poder revertir el sistema a un estat anterior en cas d'error o canvis no desitjats.
 
   * **Pas 6:** Cercar "Crear un punt de restauració" al menú d'inici.
+    <img width="823" height="336" alt="image" src="https://github.com/user-attachments/assets/9c00f4d5-e13c-4a57-a50e-9e79c5e7e137" />
+
   * **Pas 7:** Activar la protecció del sistema al disc C:.
+   <img width="796" height="601" alt="image" src="https://github.com/user-attachments/assets/eacf48ff-2705-4498-89b7-12227f4e00e5" />
+
   * **Pas 8:** Crear manualment un punt de restauració identificant-lo amb un nom clar (ex: "Post-instal·lació").
+   <img width="516" height="549" alt="image" src="https://github.com/user-attachments/assets/5c60c9b2-d767-4432-a149-d9d5d852d60e" />
+
   * **Pas 9:** Realitzar una modificació (instal·lació d'un petit programa).
+   <img width="787" height="395" alt="image" src="https://github.com/user-attachments/assets/12498296-60d6-462a-a1f9-dd29c3709ce7" />
+
   * **Pas 10:** Restaurar el sistema i verificar que el canvi s'ha desfet.
+<img width="697" height="668" alt="image" src="https://github.com/user-attachments/assets/31e28ba5-7e1b-4258-b72a-6fdf20f67d2a" />
+
+I tal com es veu es s'ha restaurat correctament:
+<img width="512" height="266" alt="image" src="https://github.com/user-attachments/assets/ff14c6d1-f391-4b7b-8cca-f820838171da" />
+
 
 -----
 
@@ -97,9 +110,32 @@ Creació de punts de seguretat per poder revertir el sistema a un estat anterior
 Anàlisi del mètode d'activació i tipologia de llicència instal·lada.
 
   * **Pas 11 i 12:** Verificar l'estat d'activació a "Configuració" \> "Sistema" \> "Activació".
+   <img width="567" height="695" alt="image" src="https://github.com/user-attachments/assets/465e3534-35e1-4ef7-9e79-f13d3ea9cf2d" />
+
   * **Pas 13:** Executar `slmgr /xpr` al Símbol del sistema per veure la data de caducitat o si l'activació és permanent.
-  * **Pas 14:** Investigar les diferències entre llicències OEM, Retail i de Volum.
-  * **Pas 15:** Consultar el cost de mercat de la versió instal·lada a les fonts oficials.
+ <img width="604" height="308" alt="image" src="https://github.com/user-attachments/assets/74f86249-8616-47bb-a072-60e0a3148480" />
+
+  * **Pas 14:**  Investigar les diferències entre llicències
+
+Les llicències de Windows es divideixen en diferents categories segons la seva flexibilitat, com s'adquireixen i el seu públic objectiu
+
+| Tipus de Llicència | Característiques Principals |
+| :--- | :--- |
+| **OEM** | Queda lligada al maquinari (placa base) on s'instal·la per primer cop. No es pot transferir a un altre PC. Sol ser més econòmica i venir preinstal·lada. |
+| **Retail** | Comprada a botigues o a la web oficial. És flexible: es pot transferir d'un PC a un altre (desactivant-la prèviament del vell). |
+| **Volum** | Pensada per a grans empreses o institucions. Una mateixa clau pot activar múltiples equips de la mateixa organització. No es ven a usuaris particulars. |
+
+---
+
+  * **Pas 15:**  Consultar el cost de mercat de la versió instal·lada
+
+El preu d'una llicència de Windows depèn de l'edició instal·lada i d'on es realitzi la consulta (botiga oficial de Microsoft o distribuïdors autoritzats). A continuació es mostren els preus orientatius actuals de la botiga oficial:
+
+| Edició de Windows | Preu aproximat (Web oficial de Microsoft) |
+| :--- | :--- |
+| **Windows 11 Home** | ~145 € |
+| **Windows 11 Pro** | ~259 € |
+| **Windows 11 Pro for Workstations** | ~439 € |
 
 -----
 
@@ -108,6 +144,8 @@ Anàlisi del mètode d'activació i tipologia de llicència instal·lada.
 Estudi de la configuració del BCD (Boot Configuration Data).
 
   * **Pas 16 i 17:** Executar `bcdedit` amb permisos d'administrador.
+ <img width="758" height="687" alt="image" src="https://github.com/user-attachments/assets/7aa46914-8c04-4d0a-924a-712da743e755" />
+
   * **Pas 18:** Identificar el **Boot Manager** (gestiona l'elecció de SO) i el **Boot Loader** (carrega el kernel del SO triat).
   * **Pas 19:** Analitzar camps com `timeout` (temps d'espera) i `path` (fitxer d'arrencada com `winload.efi`).
   * **Pas 20 i 21:** Respondre a les qüestions tècniques sobre la ubicació de la partició d'arrencada i els fitxers crítics detectats.

@@ -22,61 +22,61 @@ title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
 
 El primer pas és definir una nova instància a **VirtualBox**. En el procés de creació, seleccionem el tipus de sistema operatiu i la versió corresponent. També aprofitem per carregar la **ISO de Windows 10/11**.
 
-\<img width="874" height="642" alt="image" src="[https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458](https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458)" /\>
+<img width="874" height="642" alt="image" src="https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458" />
 
 ### 1.2 Assignació de recursos
 
 Per garantir un rendiment òptim del sistema operatiu, assignem un mínim de **4 GB de memòria RAM** i un disc dur virtual de **40 GB**.
 
-\<img width="756" height="343" alt="image" src="[https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d](https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d)" /\>
+<img width="756" height="343" alt="image" src="https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d" />
 
 ### 1.3 Selecció del medi d'instal·lació
 
 Verifiquem que la imatge ISO del sistema s'ha muntat correctament a la unitat òptica virtual abans d'iniciar l'arrencada.
 
-\<img width="716" height="500" alt="image" src="[https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a](https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a)" /\>
+<img width="716" height="500" alt="image" src="https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a" />
 
 ### 1.4 Inici de l'assistent i configuració regional
 
 Arrenquem la màquina i seguim els primers passos de l'assistent d'instal·lació de Windows, on definim l'idioma i el format de regió.
 
-\<img width="639" height="490" alt="image" src="[https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c](https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c)" /\>
+<img width="639" height="490" alt="image" src="https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c" />
 
 ### 1.5 Tipus d'instal·lació
 
 L'assistent ens ofereix dues vies: Actualització o Personalitzada. Per a una instal·lació neta des de zero, seleccionem l'opció **Personalitzada**.
 
-\<img width="662" height="647" alt="image" src="[https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861](https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861)" /\>
+<img width="662" height="647" alt="image" src="https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861" />
 
 ### 1.6 Gestió de particions
 
 Triem l'espai sense assignar del disc virtual (els 40 GB prèviament creats) per procedir amb la instal·lació dels fitxers del sistema.
 
-\<img width="678" height="639" alt="image" src="[https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce](https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce)" /\>
+<img width="678" height="639" alt="image" src="https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce" />
 
 ### 1.7 Procés de còpia de fitxers
 
 Esperem que el sistema completi la còpia, preparació i instal·lació de les característiques i actualitzacions inicials.
 
-\<img width="643" height="645" alt="image" src="[https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30](https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30)" /\>
+<img width="643" height="645" alt="image" src="https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30" />
 
 ### 1.8 Configuració post-instal·lació
 
 Un cop finalitzada la càrrega de fitxers, seleccionem la regió final i la distribució del teclat (Espanyol/Català) per adaptar l'entorn a l'usuari.
 
-\<img width="1024" height="771" alt="image" src="[https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393](https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393)" /\>
+<img width="1024" height="771" alt="image" src="https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393" />
 
 ### 1.9 Creació del compte d'usuari
 
 Configurem el nom d'usuari principal i establim una contrasenya segura per accedir al sistema.
 
-\<img width="630" height="612" alt="2026-04-14\_09-27" src="[https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59](https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59)" /\>
+<img width="630" height="612" alt="2026-04-14\_09-27" src="https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59" />
 
 ### 1.10 Verificació final
 
 Un cop acabada la configuració de privadesa i perfil, comprovem que el sistema arriba a l'escriptori i funciona correctament.
 
-\<img width="1025" height="827" alt="image" src="[https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c](https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c)" /\>
+<img width="1025" height="827" alt="image" src="https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c" />
 
 -----
 

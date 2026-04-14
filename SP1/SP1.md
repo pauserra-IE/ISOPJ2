@@ -102,6 +102,10 @@ Creació de punts de seguretat per poder revertir el sistema a un estat anterior
 I tal com es veu es s'ha restaurat correctament:
 <img width="512" height="266" alt="image" src="https://github.com/user-attachments/assets/ff14c6d1-f391-4b7b-8cca-f820838171da" />
 
+I efectivament els canvis que haviem fet (instl·lar Chrome) s'han desfet.
+<img width="655" height="394" alt="image" src="https://github.com/user-attachments/assets/06f94d92-dd8d-4156-905e-ab8240bf1f3d" />
+
+
 
 -----
 
@@ -279,23 +283,102 @@ Aquesta prova permet verificar la resolució DNS i la connectivitat amb servidor
 
 ## Fase 6: Comandes generals
 
-| Comanda | Acció |
-| :--- | :--- |
-| `dir` | Veure fitxers. |
-| `mkdir` | Crear carpeta. |
-| `tasklist` | Veure processos. |
-| `taskkill /IM notepad.exe /F` | Tancar procés forçat. |
-| `systeminfo` | Informació del sistema. |
-| `netstat -an` | Connexions obertes. |
-| `tree` | Estructura de directoris. |
-| `shutdown /s /t 0` | Apagar l'equip. |
+En aquesta fase anem a treballar amb la línia de comandes (CLI - Command Line Interface) per gestionar el sistema operatiu, els processos, els fitxers i la xarxa de manera directa i eficient.
+
+---
+
+### Pas 27: Ús bàsic de comandes del sistema
+
+Anem a utilitzar diferents comandes bàsiques de Windows per gestionar fitxers, processos i informació del sistema.
+
+A continuació es mostra un resum de les comandes utilitzades:
+
+| Comanda                       | Acció                                               |
+| :---------------------------- | :-------------------------------------------------- |
+| `dir`                         | Veure fitxers i directoris del directori actual.    |
+| `mkdir`                       | Crear una carpeta nova.                             |
+| `tasklist`                    | Visualitzar els processos actius del sistema.       |
+| `taskkill /IM notepad.exe /F` | Finalitzar un procés de forma forçada.              |
+| `systeminfo`                  | Mostrar informació detallada del sistema.           |
+| `netstat -an`                 | Visualitzar connexions de xarxa actives.            |
+| `tree`                        | Mostrar l’estructura de directoris en format arbre. |
+| `shutdown /s /t 0`            | Apagar l’equip immediatament.                       |
+
+---
+
+### Pas 28: Comparació entre CMD i PowerShell
+
+Anem a comparar l’entorn de treball **CMD (Símbol del sistema)** amb **PowerShell**.
+
+* **CMD** és l’intèrpret de comandes tradicional de Windows, basat en instruccions simples i text pla.
+* **PowerShell** és una eina més moderna i avançada que permet treballar amb **objectes en lloc de text**, cosa que facilita l’automatització i l’administració avançada del sistema.
+
+En resum:
+
+* CMD → entorn bàsic i limitat
+* PowerShell → entorn avançat i orientat a administració professional
+
+---
+
+### Pas 29 a 32: Execució de comandes per categories
+
+Anem a explorar diferents tipus de comandes agrupades per funcionalitat:
+
+#### 🔹 Comandes de fitxers
+cd 
+
+* `dir` per llistar fitxerS
+
+* `mkdir` per crear directoris
+* `del` per eliminar fitxers
+<img width="425" height="448" alt="image" src="https://github.com/user-attachments/assets/d09abca0-a3ea-4cc7-a2ad-0e3f940269df" />
 
 
-Ús de la CLI (Command Line Interface) per a la gestió del sistema.
+Aquestes comandes permeten gestionar l’estructura de fitxers del sistema de manera directa.
 
-  * **Pas 28:** Comparar `cmd` vs `PowerShell` (PowerShell permet treballar amb objectes i és el substitut modern).
-  * **Pas 29 a 32:** Explorar comandes de fitxers (`dir`, `mkdir`, `del`), de sistema (`tasklist`, `systeminfo`, `hostname`) i de xarxa (`netstat`).
-  * **Pas 33:** Interpretar les dades de rendiment i processos obtingudes.
+---
+
+#### 🔹 Comandes de sistema
+
+Anem a utilitzar:
+
+* `tasklist` per veure processos actius
+<img width="645" height="359" alt="image" src="https://github.com/user-attachments/assets/27f1b2e3-bc8b-42be-8164-08d93ba2a870" />
+
+* `systeminfo` per obtenir informació del sistema
+  <img width="635" height="563" alt="image" src="https://github.com/user-attachments/assets/666c898f-e156-43d4-8ba5-6b780ddaa970" />
+
+* `hostname` per consultar el nom de l’equip
+<img width="187" height="40" alt="image" src="https://github.com/user-attachments/assets/6fa84eb1-9996-4d04-9bd1-6caa0a27e70c" />
+
+
+Aquestes comandes permeten monitoritzar l’estat del sistema operatiu.
+
+---
+
+#### 🔹 Comandes de xarxa
+
+Anem a utilitzar:
+
+* `netstat -an` per veure connexions obertes i ports actius
+<img width="581" height="687" alt="image" src="https://github.com/user-attachments/assets/91f78a29-7b22-4455-be85-5db9d8062d2f" />
+
+Aquesta comanda ens ajuda a analitzar l’activitat de xarxa del sistema.
+
+---
+
+### Pas 33: Interpretació de dades del sistema
+
+Anem a analitzar la informació obtinguda a partir de les comandes executades.
+
+* A partir de `tasklist`, identifiquem els processos actius i el consum general del sistema.
+ ![Uploading image.png…]()
+
+* Amb `systeminfo`, obtenim dades com la versió del sistema operatiu, memòria RAM i configuració del sistema.
+* Amb `netstat -an`, analitzem les connexions establertes, ports escoltant i possibles comunicacions actives.
+
+
+Aquesta anàlisi ens permet entendre millor el comportament del sistema i detectar possibles incidències o sobrecàrregues.
 
 -----
 

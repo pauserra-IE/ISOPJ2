@@ -33,18 +33,40 @@ Aquest document detalla el procés d'instal·lació i configuració inicial d'un
 Preparació de l'entorn virtualitzat i desplegament del sistema.
 
 ### Pas 1-5: Configuració de la Màquina Virtual
-1. Crear una nova màquina a **VirtualBox**.
-2. Assignar un mínim de **4 GB de RAM** i un disc dur de **40 GB**.
-3. Carregar la imatge **ISO** de Windows 10 o 11.
+ Crear una nova màquina a **VirtualBox**. Li carreguem la **ISO de W10**
+   
+<img width="874" height="642" alt="image" src="https://github.com/user-attachments/assets/1e39e580-b9e9-4af3-ac06-42d54c18f458" />
 
-> **[CAPTURA DE PANTALLA: Propietats de la MV a VirtualBox amb la RAM i el disc destacats]**
+ Assignar un mínim de **4 GB de RAM** i un disc dur de **40 GB**.
+<img width="756" height="343" alt="image" src="https://github.com/user-attachments/assets/7a43509d-8ee9-49dc-902f-9776e71b298d" />
 
-### Pas 6: Procés d'instal·lació
-1. Arrencar la màquina i seguir l'assistent (idioma, regió).
-2. Crear l'usuari principal amb la seva contrasenya.
-3. Finalitzar la instal·lació fins a arribar a l'escriptori.
+ Carregar la imatge **ISO** de Windows 10 o 11.
 
-> **[CAPTURA DE PANTALLA: Escriptori de Windows operatiu]**
+<img width="716" height="500" alt="image" src="https://github.com/user-attachments/assets/344282de-a626-4abb-8767-4ed6e4e3b46a" />
+
+ Arrencar la màquina i seguir l'assistent (idioma, regió).
+  <img width="639" height="490" alt="image" src="https://github.com/user-attachments/assets/aa18e788-5250-402b-b81e-29c8082cf01c" />
+Tenim dues opcions. En aquest cas faré una instalació personalitzada :
+<img width="662" height="647" alt="image" src="https://github.com/user-attachments/assets/328d2678-4874-469d-8f36-75cc2c303861" />
+
+Triem on volem fer la instalació
+<img width="678" height="639" alt="image" src="https://github.com/user-attachments/assets/5e62d3e9-e7bd-42e2-95c5-0f753f2430ce" />
+
+Esperem a que acabi la instlació
+
+<img width="643" height="645" alt="image" src="https://github.com/user-attachments/assets/50b07487-5a62-4b43-84bb-5c336a5b2b30" />
+
+
+
+. Configuracio
+  Seleccionem regió i distribució del teclat
+<img width="1024" height="771" alt="image" src="https://github.com/user-attachments/assets/1253adeb-d1c8-49c6-9e98-fcd67835b393" />
+
+Configurem l'usuari i contrasenya
+<img width="630" height="612" alt="2026-04-14_09-27" src="https://github.com/user-attachments/assets/29d87898-9189-49f6-8267-cf9064917f59" />
+
+comprovem que inicia correctament
+<img width="1025" height="827" alt="image" src="https://github.com/user-attachments/assets/4dbd4b19-ac24-4ef9-946a-ff1d655ed77c" />
 
 ---
 
@@ -53,7 +75,9 @@ Gestió de la seguretat davant de canvis crítics.
 
 ### Pas 6-8: Activació i creació
 1. Cercar "Crear un punt de restauració" al menú Inici.
+   
 2. **Activar la protecció** per a la unitat C:.
+
 3. Crear un punt manualment anomenat "Post-Instal·lació".
 
 > **[CAPTURA DE PANTALLA: Finestra de Protecció del sistema mostrant el punt creat]**

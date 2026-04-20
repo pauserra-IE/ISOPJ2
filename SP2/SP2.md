@@ -96,7 +96,6 @@ Dins de la mateixa finestra de configuració de quotes, definirem els límits pe
 Crearem l'usuari **alumne1** i l'usuari **alumne2** amb les seves respectives contrasenyes.
 <img width="554" height="475" alt="image" src="https://github.com/user-attachments/assets/02db2bab-d938-4a68-9820-fccbcd51551c" />
 
-> **[Captura de pantalla: Llista d'usuaris del sistema on apareguin els nous comptes alumne1 i alumne2]**
 
 ### Pas 8. Afegir-los a un grup nou anomenat Limitats
 Per gestionar els permisos de forma conjunta, crearem un grup:
@@ -104,7 +103,8 @@ Per gestionar els permisos de forma conjunta, crearem un grup:
 2. Crearem un grup nou anomenat **Limitats**.
 3. Afegirem els usuaris **alumne1** i **alumne2** com a membres d'aquest grup.
 
-> **[Captura de pantalla: Propietats del grup "Limitats" mostrant que alumne1 i alumne2 en formen part]**
+<img width="739" height="625" alt="image" src="https://github.com/user-attachments/assets/516bb16a-ea07-468e-9671-651c06e7452a" />
+
 
 ### Pas 9. Provar la còpia de fitxers dins Dades per veure com actuen les quotes (superar límit)
 Finalment, verificarem que la configuració funciona:
@@ -112,9 +112,42 @@ Finalment, verificarem que la configuració funciona:
 2. Intentarem copiar un fitxer o carpeta que superi els 300 MB a la unitat **Dades (E:)**.
 3. El sistema hauria de mostrar un error indicant que no hi ha prou espai, tot i que el disc físic estigui buit.
 
-> **[Captura de pantalla: Missatge d'error de Windows en intentar copiar un fitxer que supera la quota de 300 MB]**
+<img width="865" height="555" alt="image" src="https://github.com/user-attachments/assets/f38f0df3-31b1-49bb-8ae9-cb92f3f15ff9" />
+
 
 ---
+## Fase 3 – Script de còpia i automatització
 
-¿Vols que continuem amb la **Fase 3: Script de còpia i automatització**?
 
+### Pas 10. Afegir tercer disc virtual, formatar-lo en NTFS com a Backups
+Repetirem el procés de la Fase 1: afegirem un tercer disc a VirtualBox i, des de la **Gestió de discs**, l'inicialitzarem i crearem un volum simple anomenat **Backups** en format **NTFS**.
+
+<img width="804" height="691" alt="image" src="https://github.com/user-attachments/assets/ddbd00f4-a184-45f1-b7f4-32ab77e6d73f" />
+
+
+### Pas 11. Crear carpeta CòpiesUsuaris dins Backups
+Dins de la nova unitat, crearem una carpeta arrel per centralitzar els fitxers dels alumnes.
+<img width="531" height="289" alt="image" src="https://github.com/user-attachments/assets/7c833471-8c75-435c-9ce3-ffea1a167501" />
+
+### Pas 12. Crear un script .bat que copiï C:\Users\%USERNAME% a E:\CòpiesUsuaris\%USERNAME%
+Obre el bloc de notes i crea un fitxer anomenat `copia_seguretat.bat`. Utilitzarem la variable d'entorn `%USERNAME%` perquè l'script sigui genèric per a qualsevol usuari que l'executi. La comanda recomanada és `robocopy` per la seva eficiència:
+
+```
+@echo off
+robocopy "C:\Users\%USERNAME%" "F:\CòpiesUsuaris\%USERNAME%" /E /R:0 /W:0
+pause
+```
+
+<img width="666" height="226" alt="image" src="https://github.com/user-attachments/assets/bed3faff-3be0-4ff8-af27-b35d991bd977" />
+
+### Pas 13. Obre gpedit.msc → Configuració d’usuari → Scripts → Inici de sessió
+Executa `gpedit.msc` per obrir l'Editor de polítiques de grup local. Navega per l'arbre de carpetes: **Configuració de l'usuari** > **Configuració de Windows** > **Scripts (Inici de sessió/Tancament de sessió)**.
+<img width="682" height="320" alt="image" src="https://github.com/user-attachments/assets/5c37bb24-4631-46b4-bf7e-74143923b871" />
+
+
+### Pas 14. Assigna l’script perquè s’executi automàticament quan alumne1 o alumne2 inicien sessió
+1. Fes doble clic a **Inici de sessió**.
+2. Fes clic a **Afegeix** i selecciona el fitxer `.bat` que has creat anteriorment.
+3. Aplica els canvis. Ara, cada cop que un usuari del grup "Limitats" entri, les seves dades es copiaran al disc de Backups.
+
+<img width="590" height="489" alt="image" src="https://github.com/user-attachments/assets/ee1ba1cd-1577-4670-91c7-c6f9e79a0367" />

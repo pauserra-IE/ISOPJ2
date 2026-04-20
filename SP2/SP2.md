@@ -65,8 +65,56 @@ Després, obrirem una consola de comandes (CMD) per verificar-ho mitjançant l'e
 Executarem les següents comandes:
 * `diskpart`
 * `list volume`
+<img width="675" height="309" alt="image" src="https://github.com/user-attachments/assets/bd9960fa-b052-40f5-8744-ed740e4278e9" />
 
-> **[Captura de pantalla: Terminal amb el resultat de la comanda `list volume` on es vegin les particions Dades i Portable amb les seves respectives lletres i formats]**
 
 ---
+
+## Fase 2 – Quotes i usuaris
+
+En aquesta fase, configurarem restriccions d'espai en disc per evitar que un sol usuari noli tot l'emmagatzematge de la partició de dades, i gestionarem els comptes d'usuari i grups que estaran subjectes a aquestes restriccions.
+
+### Pas 5. Activar quotes de disc a la partició Dades (NTFS)
+Les quotes de disc permeten als administradors controlar l'ús de l'emmagatzematge. Per activar-les:
+1. Anirem a "Aquest equip", farem clic dret sobre la unitat **Dades (E:)** i seleccionarem **Propietats**.
+2. Ens desplaçarem a la pestanya **Quota** i farem clic a **Mostra la configuració de quota**.
+3. Marcarem la casella **Habilita la gestió de quotes**.
+
+<img width="643" height="551" alt="image" src="https://github.com/user-attachments/assets/932865d7-5e39-4966-93a6-8de767e6fa4a" />
+
+
+### Pas 6. Establir límit de 300 MB per usuari, amb notificació d’advertència
+Dins de la mateixa finestra de configuració de quotes, definirem els límits per defecte per als nous usuaris:
+1. Seleccionarem l'opció **Limita l'espai de disc a** i posarem **300 MB**.
+2. En el camp **Estableix el nivell d'advertiment a**, posarem un valor inferior (per exemple, **250 MB**) per tal que l'usuari rebi un avís abans d'arribar al límit.
+3. Marcarem l'opció **Denega l'espai de disc als usuaris que superin el límit de quota** per fer que la restricció sigui efectiva.
+
+<img width="368" height="456" alt="image" src="https://github.com/user-attachments/assets/2031fdf6-c2aa-4ddd-bf9e-5d02912019f5" />
+
+
+### Pas 7. Crear dos usuaris locals: alumne1 i alumne2
+Crearem l'usuari **alumne1** i l'usuari **alumne2** amb les seves respectives contrasenyes.
+<img width="554" height="475" alt="image" src="https://github.com/user-attachments/assets/02db2bab-d938-4a68-9820-fccbcd51551c" />
+
+> **[Captura de pantalla: Llista d'usuaris del sistema on apareguin els nous comptes alumne1 i alumne2]**
+
+### Pas 8. Afegir-los a un grup nou anomenat Limitats
+Per gestionar els permisos de forma conjunta, crearem un grup:
+1. Dins de `lusrmgr.msc`, anirem a la carpeta **Grups**.
+2. Crearem un grup nou anomenat **Limitats**.
+3. Afegirem els usuaris **alumne1** i **alumne2** com a membres d'aquest grup.
+
+> **[Captura de pantalla: Propietats del grup "Limitats" mostrant que alumne1 i alumne2 en formen part]**
+
+### Pas 9. Provar la còpia de fitxers dins Dades per veure com actuen les quotes (superar límit)
+Finalment, verificarem que la configuració funciona:
+1. Iniciarem sessió com a **alumne1**.
+2. Intentarem copiar un fitxer o carpeta que superi els 300 MB a la unitat **Dades (E:)**.
+3. El sistema hauria de mostrar un error indicant que no hi ha prou espai, tot i que el disc físic estigui buit.
+
+> **[Captura de pantalla: Missatge d'error de Windows en intentar copiar un fitxer que supera la quota de 300 MB]**
+
+---
+
+¿Vols que continuem amb la **Fase 3: Script de còpia i automatització**?
 

@@ -151,3 +151,59 @@ Executa `gpedit.msc` per obrir l'Editor de polítiques de grup local. Navega per
 3. Aplica els canvis. Ara, cada cop que un usuari del grup "Limitats" entri, les seves dades es copiaran al disc de Backups.
 
 <img width="590" height="489" alt="image" src="https://github.com/user-attachments/assets/ee1ba1cd-1577-4670-91c7-c6f9e79a0367" />
+
+---
+
+## Fase 4 – Verificació i documentació
+
+L'objectiu d'aquesta fase és validar que totes les configuracions de discs, quotes d'usuari i automatització mitjançant scripts funcionen correctament i de forma integrada.
+
+### Pas 15. Verificació del sistema
+Per comprovar que el sistema està ben configurat, realitzarem les següents accions:
+
+1.  **Comprovació de l'script de còpia:** Iniciarem sessió amb l'usuari **alumne1**. En entrar, s'ha d'obrir automàticament una finestra de consola executant el fitxer `.bat`. Un cop tancada, anirem a la unitat de **Backups** i verificarem que s'ha creat una carpeta amb el nom de l'usuari que conté els seus fitxers personals.
+
+<img width="465" height="168" alt="image" src="https://github.com/user-attachments/assets/d2de44e4-07a4-4c87-8d43-00951489de89" />
+
+   
+2.  **Comprovació de la quota de disc:** Dins de la sessió d'alumne1, anirem a la unitat **Dades**. Intentarem copiar un fitxer gran (superior a 300 MB). El sistema ha de llançar un avís d'espai insuficient, demostrant que la quota està operativa tot i que el disc tingui espai físic real.
+
+<img width="567" height="463" alt="image" src="https://github.com/user-attachments/assets/e3b6de61-1229-4fad-976f-de5b3b1972aa" />
+
+
+---
+
+## Fase 5 – Gestió de processos i serveis
+
+En aquesta fase analitzarem el consum de recursos del sistema i aprendrem a optimitzar-lo eliminant processos que no són necessaris per al treball diari.
+
+### Pas 19. Llistar processos actius
+Iniciarem sessió com a **alumne1** i obrirem una consola de comandes (CMD). Executarem la comanda `tasklist` per veure tots els processos en execució. Per guardar aquesta informació, bolcarem el resultat en un fitxer de text dins de la carpeta de l'usuari:
+`tasklist > C:\Users\alumne1\processos_inici.txt`
+
+> **[Captura de pantalla: Finestra del CMD amb el llistat de processos generat per la comanda tasklist]**
+
+### Pas 20. Identificar processos prescindibles
+Analitzarem la llista per detectar aplicacions que consumeixen memòria RAM innecessàriament en una màquina virtual.
+
+| Nom del procés | Memòria usada (aprox.) | Justificació per eliminar-lo |
+| :--- | :--- | :--- |
+| `OneDrive.exe` | 35 MB | No s'utilitza emmagatzematge al núvol en aquest exercici. |
+| `Teams.exe` | 180 MB | Consum molt elevat de recursos; innecessari per a l'administració de discs. |
+| `SkypeApp.exe` | 25 MB | Servei de missatgeria que s'inicia per defecte i resta agilitat al sistema. |
+
+### Pas 21. Eliminar processos manualment
+Utilitzarem la comanda `taskkill` per tancar un procés de forma forçada i comprovar-ne l'efecte.
+* **Comanda:** `taskkill /IM OneDrive.exe /F`
+* Després, tornarem a executar `tasklist` per assegurar-nos que el procés ja no apareix.
+
+> **[Captura de pantalla: Consola mostrant l'ordre d'eliminació del procés i la llista de processos posterior buida d'aquest]**
+
+### Pas 22. Automatitzar-ho a l’inici de sessió
+Perquè la neteja de recursos sigui automàtica, editarem l'script `.bat` creat a la fase anterior. Afegirem les comandes `taskkill` per a OneDrive i Teams. D'aquesta manera, quan **alumne2** iniciï sessió, aquests processos es tancaran sols.
+
+> **[Captura de pantalla: Bloc de notes amb l'script .bat que inclou les ordres de còpia i les de taskkill]**
+
+### Pas 23. Documentació i reflexió
+* **Procés crític:** Si matem el procés `explorer.exe`, la interfície gràfica (escriptori, barra de tasques) desapareixerà. Això ensenya la diferència entre processos d'usuari i processos del sistema.
+* **Rendiment:** Eliminar processos prescindibles permet que la màquina virtual funcioni amb més fluïdesa, reduint la càrrega sobre la CPU i la memòria RAM de l'equip amfitrió.

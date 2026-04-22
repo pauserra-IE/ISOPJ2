@@ -180,30 +180,99 @@ En aquesta fase analitzarem el consum de recursos del sistema i aprendrem a opti
 ### Pas 19. Llistar processos actius
 Iniciarem sessió com a **alumne1** i obrirem una consola de comandes (CMD). Executarem la comanda `tasklist` per veure tots els processos en execució. Per guardar aquesta informació, bolcarem el resultat en un fitxer de text dins de la carpeta de l'usuari:
 `tasklist > C:\Users\alumne1\processos_inici.txt`
-
-> **[Captura de pantalla: Finestra del CMD amb el llistat de processos generat per la comanda tasklist]**
+<img width="534" height="79" alt="image" src="https://github.com/user-attachments/assets/71db388f-552a-4c19-8e0c-095d072b7ff6" />
+<img width="744" height="946" alt="image" src="https://github.com/user-attachments/assets/5856aac9-f8c9-4db6-8785-87e2c46c2160" />
 
 ### Pas 20. Identificar processos prescindibles
 Analitzarem la llista per detectar aplicacions que consumeixen memòria RAM innecessàriament en una màquina virtual.
 
-| Nom del procés | Memòria usada (aprox.) | Justificació per eliminar-lo |
-| :--- | :--- | :--- |
-| `OneDrive.exe` | 35 MB | No s'utilitza emmagatzematge al núvol en aquest exercici. |
-| `Teams.exe` | 180 MB | Consum molt elevat de recursos; innecessari per a l'administració de discs. |
-| `SkypeApp.exe` | 25 MB | Servei de missatgeria que s'inicia per defecte i resta agilitat al sistema. |
+| Nom del procés | Justificació per eliminar-lo |
+| :--- |:--- |
+| `OneDrive.exe` | No s'utilitza emmagatzematge al núvol en aquest exercici. |
+| `Teams.exe` |  Consum molt elevat de recursos; innecessari per a l'administració de discs. |
+| `SkypeApp.exe` |  Servei de missatgeria que s'inicia per defecte i resta agilitat al sistema. |
 
 ### Pas 21. Eliminar processos manualment
 Utilitzarem la comanda `taskkill` per tancar un procés de forma forçada i comprovar-ne l'efecte.
 * **Comanda:** `taskkill /IM OneDrive.exe /F`
-* Després, tornarem a executar `tasklist` per assegurar-nos que el procés ja no apareix.
 
-> **[Captura de pantalla: Consola mostrant l'ordre d'eliminació del procés i la llista de processos posterior buida d'aquest]**
+<img width="726" height="201" alt="image" src="https://github.com/user-attachments/assets/5d55cf7a-21bf-4563-84d1-b4357727506d" />
 
 ### Pas 22. Automatitzar-ho a l’inici de sessió
 Perquè la neteja de recursos sigui automàtica, editarem l'script `.bat` creat a la fase anterior. Afegirem les comandes `taskkill` per a OneDrive i Teams. D'aquesta manera, quan **alumne2** iniciï sessió, aquests processos es tancaran sols.
 
-> **[Captura de pantalla: Bloc de notes amb l'script .bat que inclou les ordres de còpia i les de taskkill]**
+<img width="775" height="218" alt="image" src="https://github.com/user-attachments/assets/90c47ed8-9fb2-4f69-bdda-1a66d4946037" />
+
+I tal com es veu en la seguent captura en reengegar amb alumne2 no s'han executat
+<img width="746" height="317" alt="image" src="https://github.com/user-attachments/assets/c3eb1358-fad9-44fb-bc31-25ed47cb7af0" />
+
+
 
 ### Pas 23. Documentació i reflexió
 * **Procés crític:** Si matem el procés `explorer.exe`, la interfície gràfica (escriptori, barra de tasques) desapareixerà. Això ensenya la diferència entre processos d'usuari i processos del sistema.
 * **Rendiment:** Eliminar processos prescindibles permet que la màquina virtual funcioni amb més fluïdesa, reduint la càrrega sobre la CPU i la memòria RAM de l'equip amfitrió.
+---
+
+## Fase 6 – Gestió de permisos (ACLs)
+
+En aquesta fase configurarem permisos especials per a carpetes, anant més enllà dels permisos de grup per aplicar restriccions a usuaris específics dins d'un mateix grup.
+
+### Què són les ACLs i com funcionen a Windows
+A Windows, cada fitxer i carpeta té una llista de control d'accés (ACL). Aquesta llista defineix quina identitat (usuari o grup) té afectació i quins permisos té (lectura, escriptura, control total, etc.). Les ACLs permeten una granularitat molt més alta que els permisos compartits estàndard.
+
+### Pas 24. Crear la carpeta
+Iniciarem sessió com a **administrador** i crearem una carpeta anomenada **Projectes** dins de la partició **Dades (D:)**.
+<img width="693" height="212" alt="image" src="https://github.com/user-attachments/assets/d35ccf05-7557-452a-a839-283a60ba081a" />
+
+### Pas 25. Assignar permisos normals al grup
+Configurarem la carpeta perquè el grup tingui el control inicial:
+1. Farem clic dret a `D:\Projectes` -> **Propietats** -> pestanya **Seguretat**.
+2. Farem clic a **Avançat** i després a **Desactiva l'herència**, triant l'opció de conservar els permisos existents per poder-los modificar.
+   <img width="746" height="949" alt="image" src="https://github.com/user-attachments/assets/9c2a2c49-05e1-4509-92e4-a5f4d4141163" />
+   <img width="510" height="338" alt="image" src="https://github.com/user-attachments/assets/b30b5e4b-54de-42f5-bce1-2c3fb91dc12c" />
+
+   
+3. Eliminarem qualsevol entrada d'usuaris genèrics com "Usuaris" o "Tothom".
+4. Afegirem el grup **Limitats** i li assignarem **Control total**.
+<img width="783" height="497" alt="image" src="https://github.com/user-attachments/assets/bf86a192-2122-4c04-8227-4f17456c11ae" />
+<img width="764" height="383" alt="image" src="https://github.com/user-attachments/assets/efa89482-49b8-4436-ae0c-9023c610a58f" />
+
+
+
+### Pas 26. Comprovar accés amb alumne1
+Iniciarem sessió com a **alumne1**:
+1. Entrarem a `D:\Projectes`.
+2. Crearem un fitxer de text, el modificarem i l'esborrarem.
+<img width="604" height="202" alt="image" src="https://github.com/user-attachments/assets/62c64d0b-16f6-4804-9d84-e9dacd2a27ce" />
+<img width="565" height="461" alt="image" src="https://github.com/user-attachments/assets/01469f36-19a5-4953-bc3e-48d5e63a01b5" />
+<img width="567" height="279" alt="image" src="https://github.com/user-attachments/assets/182afba7-f708-4c28-8f26-d14456b47427" />
+
+
+3. Com que som membres de "Limitats", el sistema ens ha de permetre fer totes aquestes operacions sense restriccions.
+
+### Pas 27. Aplicar excepció per alumne2
+Ara aplicarem una restricció específica per a un membre del grup. Com a **administrador**, obrirem la consola i executarem:
+`icacls "D:\Projectes" /grant:r alumne2:(R)`
+
+Aquesta comanda substitueix els permisos heretats de l'alumne2 i li assigna exclusivament permisos de **Lectura (R)**.
+
+<img width="760" height="197" alt="image" src="https://github.com/user-attachments/assets/5cf8b39b-647c-4c7b-8a3f-61177f905045" />
+
+
+
+### Pas 28. Comprovar l'excepció amb alumne2
+Iniciarem sessió com a **alumne2** per verificar l'eficàcia de l'ACL:
+1. Intentarem obrir un fitxer existent a `D:\Projectes`: el sistema ens ha de deixar llegir-lo.
+2. Intentarem crear un fitxer nou o modificar un existent: Windows ens ha de mostrar un missatge de **"Accés denegat"**.
+
+<img width="570" height="394" alt="image" src="https://github.com/user-attachments/assets/9fdeec28-bdb7-49ac-875f-ad1ecb725371" />
+
+
+### Pas 29. Consultar els permisos aplicats
+Finalment, verificarem l'estat final de les ACLs des de la línia de comandes com a administrador executant:
+`icacls "E:\Projectes"`
+
+Hauríem de veure un resum on s'especifiqui que **Limitats** té control total `(F)` i **alumne2** només lectura `(R)`.
+
+<img width="725" height="204" alt="image" src="https://github.com/user-attachments/assets/e11603f9-2fa2-4622-910d-fd09c889426e" />
+

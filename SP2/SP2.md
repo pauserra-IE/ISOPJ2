@@ -272,7 +272,13 @@ Iniciarem sessió com a **alumne2** per verificar l'eficàcia de l'ACL:
 Finalment, verificarem l'estat final de les ACLs des de la línia de comandes com a administrador executant:
 `icacls "E:\Projectes"`
 
-Hauríem de veure un resum on s'especifiqui que **Limitats** té control total `(F)` i **alumne2** només lectura `(R)`.
-
 <img width="725" height="204" alt="image" src="https://github.com/user-attachments/assets/e11603f9-2fa2-4622-910d-fd09c889426e" />
+
+Explicació dels codis que apareixeran:
+(R): Permís de només lectura per a l'alumne2.
+
+(RX): Permís de lectura i execució per al grup (no poden escriure ni esborrar).
+
+(OI)(CI): Indica que els permisos s'heretaran automàticament a tots els fitxers i carpetes que es creïn dins de "Projectes" en un futur.
+
 

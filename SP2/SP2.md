@@ -5,14 +5,15 @@ title: "Sprint 2: Instal·lació, Configuració de Programari de Base i Gestió 
 
 ## Índex
 
-1. [Fase 1: Preparació del Sistema](#fase-1-preparació-del-sistema)
-2. [Fase 2: Quotes i Usuaris](#fase-2-quotes-i-usuaris)
-3. [Fase 3: Script de Còpia i Automatització](#fase-3-script-de-còpia-i-automatització)
-4. [Fase 4: Verificació i Documentació](#fase-4-verificació-i-documentació)
-5. [Fase 5: Gestió de Processos i Serveis](#fase-5-gestió-de-processos-i-serveis)
-6. [Fase 6: Gestió de Permisos (ACLs)](#fase-6-gestió-de-permisos-acls)
+1. [Sprint 2: Administració de Discs, Usuaris i Automatització](#sprint-2-administració-de-discs-usuaris-i-automatització)
+2. [Fase 1 – Preparació del sistema](#fase-1--preparació-del-sistema)
+3. [Fase 2 – Quotes i usuaris](#fase-2--quotes-i-usuaris)
+4. [Fase 3 – Script de còpia i automatització](#fase-3--script-de-còpia-i-automatització)
+5. [Fase 4 – Verificació i documentació](#fase-4--verificació-i-documentació)
+6. [Fase 5 – Gestió de processos i serveis](#fase-5--gestió-de-processos-i-serveis)
+7. [Fase 6 – Gestió de permisos (ACLs)](#fase-6--gestió-de-permisos-acls)
+8. [Què són les ACLs i com funcionen a Windows](#què-són-les-acls-i-com-funcionen-a-windows)
 
-Aquí tens la documentació detallada de la **Fase 1** per al teu Sprint 2, seguint l'estructura i els passos exactes que has proporcionat.
 
 ---
 

@@ -46,3 +46,19 @@ creem una unitat organitzativa, en aquest cas es diu "classe" i creem un usuari:
 ara obrim el client i provem de fer un ping al servidor (10.0.2.11)
 <img width="1656" height="478" alt="image" src="https://github.com/user-attachments/assets/91cbc86c-512f-4bfc-9031-d1ca127d8c31" />
 
+configurem com a dns la ip del servidor
+<img width="412" height="471" alt="image" src="https://github.com/user-attachments/assets/e8e37230-09ec-4001-a537-bcae00fdde2c" />
+
+ara nem a canviar el domini del client a pauserra.local
+<img width="759" height="424" alt="image" src="https://github.com/user-attachments/assets/86866a42-8635-4e82-9b2f-979348ee5d91" />
+
+i ara indiquem el nom d'usuari i contrasenya que te permis per a unirse al domini:
+
+<img width="779" height="645" alt="image" src="https://github.com/user-attachments/assets/c9b29472-8527-47d3-94af-551566001366" />
+
+finalment en introduir l'usuari i contrasenya, s'ha unit correctament al domini pauserra.local
+
+<img width="358" height="536" alt="image" src="https://github.com/user-attachments/assets/49fdeb9e-a6d4-4ba6-9faf-38258282f673" />
+
+
+Reiniciem per aplicar els canvis

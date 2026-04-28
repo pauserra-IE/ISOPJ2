@@ -11,4 +11,5 @@ canviem la ip a estatica
 <img width="586" height="501" alt="image" src="https://github.com/user-attachments/assets/93f6c3c7-eddb-4923-90fd-6cbae2586c48" />
 
 Provem de fer ping 8.8.8.8
-<img width="586" height="501" alt="image" src="https://github.com/user-attachments/assets/20c31b7a-d864-48bb-8fd7-cbf8156f05f5" />
+
+<img width="824" height="318" alt="image" src="https://github.com/user-attachments/assets/01bfba40-0caf-411b-9534-fc2095b95fc9" />

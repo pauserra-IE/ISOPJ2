@@ -136,8 +136,15 @@ footer .license img {
 
 /* Afegir espai entre les imatges i el text */
 img {
-  display: block;        /* Força que les imatges siguin blocs, no alineades amb el text */
-  margin: 20px 0;        /* Marge superior i inferior per separar de manera visual */
-  max-width: 100%;       /* Evita que les imatges surtin de la pàgina */
-  height: auto;          /* Manté la relació d'aspecte original */
+  display: block;
+  margin: 20px 0;
+  max-width: 100%;
+  height: auto;
+  
+  /* Bloqueo de interacción */
+  -webkit-user-select: none;  /* Safari */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Estándar */
+  -webkit-user-drag: none;    /* Evita arrastrar la imagen */
+  pointer-events: none;       /* Desactiva por completo el clic (Cuidado: los enlaces en imágenes dejarán de funcionar) */
 }

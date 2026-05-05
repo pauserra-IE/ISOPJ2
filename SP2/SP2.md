@@ -2,10 +2,6 @@
 layout: default
 title: "Sprint 2: Instal·lació, Configuració de Programari de Base i Gestió de Fitxers"
 ---
-
-# Sprint 2: Administració de Discs, Usuaris i Automatització
-
----
 ## Índex
 
 

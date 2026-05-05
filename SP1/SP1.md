@@ -4,8 +4,6 @@ title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
 ---
 
 ## Índex
-
-## Índex
 1. [Fase 1: Instal·lació del Sistema Operatiu](#fase-1-instal·lació-del-sistema-operatiu)
 2. [Fase 2: Punts de Restauració](#fase-2-punts-de-restauració)
 3. [Fase 3: Llicències de Windows](#fase-3-llicències-de-windows)

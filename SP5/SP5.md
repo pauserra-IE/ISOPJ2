@@ -6,16 +6,16 @@ title: "Sprint 5: Monitoratge, Auditories i Programari Client/Servidor"
 ## Índex
 
 - **1a Part - Autorització i auditories en Windows**
-  - [Introducció](#introduccio-autoritzacio-i-auditories)
-  - [Pràctica](#practica-autoritzacio-i-auditories)
+  - [Introducció](#introducció)
+  - [Pràctica](#pràctica-autorització-i-auditories)
 
 - **2a Part - Monitorització**
-  - [Introducció](#introduccio-monitoritzacio)
-  - [Pràctica](#practica-monitoritzacio)
+  - [Introducció](#introducció-1)
+  - [Pràctica](#pràctica-monitorització)
   
 # Autorització i auditories en Windows
 
-## Introducció autoritzacio i auditories
+## Introducció
 
 En aquesta pràctica es treballa la configuració de permisos i auditories dins de Windows Server. L’objectiu és entendre com el sistema controla l’accés dels usuaris als recursos i com es poden registrar les diferents accions que es fan dins del sistema.
 
@@ -25,7 +25,7 @@ Per altra banda, les auditories serveixen per guardar un registre de les activit
 
 Tota aquesta informació queda enregistrada al Visor d’esdeveniments de Windows, on cada acció apareix associada a un identificador concret (Event ID). Això facilita el seguiment i el control de l’activitat dels usuaris dins del servidor.
 
-## Pràctica autoritzacio i auditories
+## Pràctica autorització i auditories
 
 1. Primer obrim les **Directives de seguretat local** i accedim a **Directives locals > Directiva d’auditoria**. Aquí habilitem les opcions **“Auditar eventos de inicio de sesión”** i **“Auditar el acceso a objetos”** perquè Windows registri els inicis de sessió i els accessos als recursos del sistema.
 
@@ -86,7 +86,7 @@ Tota aquesta informació queda enregistrada al Visor d’esdeveniments de Window
 
 # Monitorització
 
-## Introducció monitoritzacio
+## Introducció
 
 La monitorització del sistema permet controlar l’estat i el rendiment dels recursos d’un ordinador en temps real. Amb eines com l’Administrador de tasques o el Monitor de recursos es pot observar el consum de CPU, memòria, disc i xarxa, així com detectar possibles problemes de rendiment o processos sospitosos.
 

@@ -3,520 +3,158 @@ layout: default
 title: "Sprint 5: Monitoratge, Auditories i Programari Client/Servidor"
 ---
 
-# Sprint 5: Monitoratge, Auditories i Programari Client/Servidor
+# Índex
+## 1a Part - Auditories
+- [Introducció](#autoritzacio-i-auditories-en-windows)
+- [Pràctica](#practica-auditories)
 
+## 2a Part - Monitorització
+- [Introducció](#monitoritzacio)
+- [Pràctica](#practica-monitoritzacio)
+  
+# Autorització i auditories en Windows
 
+## Introducció
 
-## 1. Conceptes Fonamentals de Logging
+En aquesta pràctica es treballa la configuració de permisos i auditories dins de Windows Server. L’objectiu és entendre com el sistema controla l’accés dels usuaris als recursos i com es poden registrar les diferents accions que es fan dins del sistema.
 
-Per gestionar els logs, Linux utilitza dos conceptes principals per classificar la informació:
+L’autorització permet definir quins usuaris poden accedir a carpetes, fitxers o recursos determinats i quines accions poden realitzar, com llegir, modificar o eliminar contingut. Aquesta configuració es gestiona des dels permisos de seguretat de Windows.
 
-* **Facility:** Defineix l'origen o el tipus de programa que genera el missatge (ex: `auth`, `cron`, `kern`, `mail`). L'asterisc (`*`) s'utilitza per indicar totes les fonts.
-* **Priority (Nivell):** Defineix la gravetat del missatge (ex: `debug`, `info`, `notice`, `warning`, `err`, `crit`, `alert`, `emerg`).
-* Si posem un punt (`.`), estem indicant aquest nivell i tots els superiors.
-* Si posem un igual (`.=`), indiquem **només** aquell nivell específic.
+Per altra banda, les auditories serveixen per guardar un registre de les activitats del sistema. Gràcies a això es poden detectar accessos correctes, errors d’inici de sessió, modificacions d’arxius o altres accions importants relacionades amb la seguretat.
 
+Tota aquesta informació queda enregistrada al Visor d’esdeveniments de Windows, on cada acció apareix associada a un identificador concret (Event ID). Això facilita el seguiment i el control de l’activitat dels usuaris dins del servidor.
 
-### L'eina `logger`
+## Pràctica
 
-La comanda `logger` permet afegir entrades al log del sistema manualment des de la terminal.
+1. Primer obrim les **Directives de seguretat local** i accedim a **Directives locals > Directiva d’auditoria**. Aquí habilitem les opcions **“Auditar eventos de inicio de sesión”** i **“Auditar el acceso a objetos”** perquè Windows registri els inicis de sessió i els accessos als recursos del sistema.
 
-> **Exemple:** `logger -i -s -p mail.err "Missatge d'error"`
-> * `-i`: Afegeix el PID del procés.
-> * `-s`: Mostra el missatge també per la sortida d'error estàndard.
-> * `-p`: Especifica la *facility* i la *prioritat*.
----
+<img width="822" height="854" alt="image" src="https://github.com/user-attachments/assets/9820988d-f275-4994-9443-f7223b1ec5a2" />
 
-## 2. Directoris i Fitxers Importants
+2. Un cop activades les auditories, iniciem sessió amb qualsevol compte d’usuari. Si el procés és correcte, al Visor d’esdeveniments apareixerà l’**Event ID 4624**, que indica un inici de sessió satisfactori.
 
-La majoria dels logs del sistema s'emmagatzemen a `/var/log`. Tot i que molts serveis escriuen al fitxer general `syslog`, alguns paquets instal·lats creen les seves pròpies carpetes per gestionar les seves dades de manera independent.
+<img width="606" height="944" alt="image" src="https://github.com/user-attachments/assets/8c111449-e3de-4a7a-8a23-0c6dbec22dea" />
 
-<img width="1181" height="235" alt="image" src="https://github.com/user-attachments/assets/a4107def-0e00-4b8b-9cd2-d9e2b57926f1" />
+3. Seguidament creem una carpeta nova i configurem la seva auditoria. Dins les propietats de la carpeta afegim l’usuari **Pau** amb permisos de lectura perquè el sistema registri les seves accions.
 
-Si visualitzem el fitxer `syslog`, podem veure l'activitat general del sistema en temps real:
+<img width="386" height="576" alt="image" src="https://github.com/user-attachments/assets/47456132-2ed1-471b-96aa-d0788596e8b8" />
 
-<img width="1208" height="709" alt="image" src="https://github.com/user-attachments/assets/7b87c153-76c5-4a76-8bdd-89f41addc4ca" />
+<img width="921" height="596" alt="image" src="https://github.com/user-attachments/assets/a99ee78e-0c0b-410d-88f3-c00e12a11a70" />
 
----
+4. També incorporem l’usuari **Administrador** amb control total sobre la carpeta per poder realitzar diferents proves d’accés i modificació.
 
-## 3. Rotació de Logs (`logrotate`)
+<img width="909" height="582" alt="image" src="https://github.com/user-attachments/assets/857edacc-fe76-4992-9b20-523541b4134d" />
 
-Per evitar que els fitxers de log omplin tot el disc dur, el sistema utilitza **logrotate**. Aquesta eina:
+<img width="767" height="516" alt="image" src="https://github.com/user-attachments/assets/071ed0a7-6d98-4ca6-b238-79b4e6bf0c46" />
 
-1. Comprimeix els logs antics (sovint en format `.gz`).
-2. Els reanomena (ex: `syslog.1`, `syslog.2.gz`).
-3. Elimina els fitxers més vells segons una configuració de dies o mida.
+5. Quan es creen, modifiquen o consulten fitxers dins la carpeta auditada, Windows genera l’**Event ID 4663**, que indica que s’ha produït un accés a un objecte del sistema.
 
-La configuració es troba a `/etc/logrotate.d/`.
+<img width="624" height="658" alt="image" src="https://github.com/user-attachments/assets/1a72c543-ccbb-4053-ace4-57d8ea9c1b7c" />
 
-<img width="1012" height="109" alt="image" src="https://github.com/user-attachments/assets/8470044a-eda1-4ee9-973c-e55b6c4faed9" />
+6. A continuació activem l’opció **“Auditar el seguimiento de procesos”**. Per comprovar-ne el funcionament obrim un programa, per exemple el Paint. Aquesta acció genera l’**Event ID 4688**, relacionat amb l’inici d’un procés.
 
-Podem veure la configuració específica de `rsyslog` per entendre com gestiona els seus propis fitxers:
+<img width="613" height="540" alt="image" src="https://github.com/user-attachments/assets/889ee98d-3527-4e8d-9af6-4c6acdf366ca" />
 
-<img width="987" height="536" alt="image" src="https://github.com/user-attachments/assets/059936de-5357-460b-878b-4a96f5aabba8" />
+<img width="650" height="649" alt="image" src="https://github.com/user-attachments/assets/50e3beb9-cc56-42d7-97e3-c89f241058a2" />
 
----
+7. Si tanquem el programa des de l’Administrador de tasques, es registrarà l’**Event ID 4689**, que indica la finalització del procés.
 
-## 4. Configuració de `rsyslog`
+<img width="662" height="474" alt="image" src="https://github.com/user-attachments/assets/9da8ea76-9d29-4721-b29f-21586fdba357" />
 
-Antigament, tota la configuració es trobava a `/etc/rsyslog.conf`. Actualment, a les distribucions basades en Ubuntu/Debian, la configuració de les regles per defecte es troba a:
-`/etc/rsyslog.d/50-default.conf`
+8. Després habilitem l’auditoria de **“Administración de cuentas”**. Per provar-la, creem un usuari nou. Aquesta operació genera els esdeveniments **4720** (creació del compte) i **4722** (activació del compte).
 
-<img width="1233" height="683" alt="image" src="https://github.com/user-attachments/assets/cc484c0c-752c-4122-8982-aad728ef4138" />
+<img width="603" height="572" alt="image" src="https://github.com/user-attachments/assets/a0ba1145-2ec4-481f-9b87-8ad82fd6c65d" />
 
-### Proves de funcionament
+<img width="443" height="373" alt="image" src="https://github.com/user-attachments/assets/ddbd5a4d-3a70-40ad-a871-b6b1bc61571c" />
 
-Per veure els canvis en directe mentre fem proves, executem en una terminal:
-`tail -f /var/log/syslog`
+<img width="616" height="487" alt="image" src="https://github.com/user-attachments/assets/dc50230b-31f8-428a-b2bb-475305596474" />
 
-####  1: Kern.notice
+10. Si posteriorment desactivem aquest usuari, el sistema registrarà l’**Event ID 4725**, corresponent a la desactivació del compte.
 
-Executem: `logger -i -s -p kern.notice "Prova pau"`
-El resultat a la terminal de monitoratge serà:
+<img width="443" height="342" alt="image" src="https://github.com/user-attachments/assets/895ef15e-8f6d-4b14-8292-9d0adea3c965" />
 
-<img width="807" height="460" alt="image" src="https://github.com/user-attachments/assets/ff3595b7-112e-4d89-9393-5df407d9a5c4" />
+<img width="628" height="657" alt="image" src="https://github.com/user-attachments/assets/b125678c-ad6c-4e4d-ae88-e0eb6c06e0a4" />
 
+11. Finalment, eliminem l’usuari creat anteriorment. Aquesta acció queda registrada amb l’**Event ID 4726**, que identifica l’eliminació d’un compte d’usuari.
 
+<img width="370" height="505" alt="image" src="https://github.com/user-attachments/assets/7a432a94-f1fd-4d5f-b422-67bd38cc9217" />
 
-#### Prova 2: Mail.notice
-
-Podem provar amb diferents serveis com el de correu:
-
-
-<img width="856" height="457" alt="image" src="https://github.com/user-attachments/assets/eff3f65b-138f-417e-a861-e4a99fad8712" />
-
-<img width="917" height="333" alt="image" src="https://github.com/user-attachments/assets/5764edfe-4c00-490d-92f8-d2e4d4d261c4" />
-
-#### Prova 3 i 4: Filtres de nivell
-
-Si modifiquem el fitxer de configuració per filtrar nivells específics (per exemple, usant o traient l'igual `=` a `mail.err`), el comportament del log canviarà, registrant només aquest nivell o tots els superiors.
-
-<img width="784" height="129" alt="image (10)" src="https://github.com/user-attachments/assets/8c430e9e-0c90-483f-b027-3e9fd4d0a64c" />
-<img width="1231" height="409" alt="image" src="https://github.com/user-attachments/assets/1cbf2e38-065e-4ca2-8207-5c42abeebff9" />
-
-#### Prova 5: Fitxers de log personalitzats
-
-Podem redirigir logs a fitxers propis afegint una línia al fitxer `50-default.conf`. Per exemple, per enviar totes les alertes crítiques a un fitxer nou:
-`*crit -/var/log/pau.log`
-
-<img width="808" height="342" alt="image" src="https://github.com/user-attachments/assets/fe5fed93-f0e2-461a-8012-f54bd46821f8" />
-
----
-
-## 5. El sistema `journalctl`
-
-A més dels fitxers de text tradicionals, els sistemes moderns amb `systemd` utilitzen un log binari gestionat per `journalctl`. Això permet fer cerques molt més ràpides i filtrades.
-
-Per exemple, per veure només els logs de correu:
-`journalctl --facility=mail`
-
-<img width="646" height="69" alt="image" src="https://github.com/user-attachments/assets/32039832-b9f5-4be2-a548-0a72b9e1c1c6" />
-
----
-
-## TASCA 1: Rendiment
-
-Per observar el rendiment del sistema utilitzem el **Monitor del sistema d’Ubuntu**, una eina gràfica que permet veure informació sobre els processos actius, el consum de recursos i l’estat dels sistemes de fitxers.
-
-Aquesta eina és útil per supervisar el funcionament del sistema i detectar possibles problemes de rendiment.
-
----
-
-### Pestanya 1: Processos
-
-En aquesta pestanya podem veure **tots els processos que s’estan executant al sistema**.  
-També mostra informació com el **PID, l’usuari, el percentatge de CPU i la memòria utilitzada** per cada procés.
-
-<img width="699" height="590" alt="image" src="https://github.com/user-attachments/assets/f92f86ba-7f1e-4b39-9439-7c40bb3563bc" />
-
----
-
-### Pestanya 2: Recursos
-
-En aquesta pestanya es mostren **gràfiques del consum de recursos del sistema**, com l’ús de **CPU, memòria RAM, memòria swap i xarxa**.  
-Això permet veure l’activitat del sistema en temps real.
-
-<img width="676" height="504" alt="image" src="https://github.com/user-attachments/assets/a2730a83-b391-49a2-b416-14d550ec88b6" />
-
----
-
-### Pestanya 3: Sistemes de fitxers
-
-En aquesta secció es mostra informació sobre els **discos i particions del sistema**, indicant l’**espai utilitzat i l’espai disponible** a cada sistema de fitxers.
-
-<img width="657" height="308" alt="image" src="https://github.com/user-attachments/assets/edad65f4-baae-44fc-9216-5b729c62c817" />
-
----  
-
-# TASCA CONJUNTA: Configuració de Rsyslog per a Enviament de Logs entre Hosts
-
-**Data:** 03/03/26
-
-**Components:**
-
-Valle (Grup A)  
-Pau (Grup B)
-
-En aquesta pràctica configurem un sistema de **centralització de logs** utilitzant `rsyslog` entre dues màquines Ubuntu dins la mateixa xarxa.
-Imaginem que un profe vol visualitzar els logs dels alumnes. En aquesta pràctica simularem aquest escenari:
-Un host actuarà com a **servidor de logs (Profe)** i l’altre com a **client (Alumne)** que enviarà els seus registres al servidor.
-
----
-
-# Pas 1: Preparació de les màquines (ambdós hosts)
-
-Primer de tot configurem la xarxa i preparem les màquines perquè es puguin comunicar correctament.
-
-## Configuració de les IPs
-
-Configurem les adreces IP a cada màquina, ja sigui des de la configuració de xarxa d’Ubuntu o utilitzant eines de terminal com `nmcli` o `netplan`.
-
-![Configuració IP](https://github.com/user-attachments/assets/814be02b-72eb-4080-949a-ea548ac7281b)
-
-Comprovem que les IPs s'han aplicat correctament amb una comanda com:
-
-```
-ip a
-````
-
-![IPs dels hosts](https://github.com/user-attachments/assets/02725cad-a757-4603-b749-912b4c455b21)
-
----
-
-## Desactivació del Firewall
-
-Per evitar que el firewall bloquegi el tràfic de logs, desactivem `ufw` temporalment:
-
-```
-sudo ufw disable
-```
-
-![Desactivar firewall](https://github.com/user-attachments/assets/4d003f67-a7aa-41c5-8639-ddeed38214e7)
-
----
-
-## Instal·lació de rsyslog
-
-Normalment `rsyslog` ja està instal·lat per defecte a Ubuntu, però per assegurar-nos-ho executem:
-
-```
-sudo apt update
-sudo apt install rsyslog -y
-```
-
-![Instal·lació rsyslog](https://github.com/user-attachments/assets/15559735-4340-4c36-8d2a-0ac76828cd47)
-
----
-
-# Pas 2: Configuració del servidor (Profe)
-
-Ara configurem la màquina que actuarà com a **servidor de logs**, és a dir, la que rebrà els registres dels altres hosts.
-
-Editem el fitxer de configuració principal de `rsyslog`:
-
-```
-sudo nano /etc/rsyslog.conf
-```
-
-![Edició rsyslog.conf](https://github.com/user-attachments/assets/f8f893e9-ca0b-4071-a5db-36da1901ec52)
-
-Busquem les següents línies i eliminem el comentari (`#`) per habilitar la recepció de logs via **UDP**:
-
-```
-module(load="imudp")
-input(type="imudp" port="514")
-```
-
-Aquestes línies indiquen a `rsyslog` que escolti missatges entrants al **port 514**, que és el port estàndard per a syslog.
-
-> Si volguéssim utilitzar **TCP**, hauríem d'habilitar també el mòdul `imtcp`.
-
----
-
-## Reiniciar el servei
-
-Un cop guardada la configuració reiniciem el servei:
-
-```
-sudo systemctl restart rsyslog
-```
-
-![Reiniciar rsyslog](https://github.com/user-attachments/assets/bd66d1dd-3309-44c8-b6cd-ba75f6b37fb8)
-
----
-
-# Pas 3: Configuració del client (Alumne)
-
-Ara configurem la màquina client perquè **envii tots els logs al servidor**.
-
-Editem el fitxer de configuració de regles per defecte:
-
-```
-sudo nano /etc/rsyslog.d/50-default.conf
-```
-
-![Configuració client](https://github.com/user-attachments/assets/fd5a27fd-61de-4f79-84cf-d400db2a5288)
-
-Al final del fitxer afegim la següent línia:
-
-```
-*.* @192.168.1.10:514
-```
-
-Significat de la configuració:
-
-* `*.*` → enviem **tots els logs de tots els serveis**
-* `@` → enviament via **UDP**
-* `@@` → enviament via **TCP**
-* `192.168.1.10` → IP del servidor de logs
-* `514` → port de recepció del servidor
-
----
-
-## Reiniciar el servei al client
-
-Després de modificar la configuració reiniciem `rsyslog`:
-
-```
-sudo systemctl restart rsyslog
-```
-
-![Reiniciar rsyslog client](https://github.com/user-attachments/assets/bd66d1dd-3309-44c8-b6cd-ba75f6b37fb8)
-
----
-
-# Pas 4: Verificació i prova final
-
-Finalment comprovem que el sistema de logs funciona correctament.
-
-## Al servidor (Profe)
-
-Deixem el servidor escoltant els logs en temps real:
-
-```
-tail -f /var/log/syslog
-```
-
----
-
-## Al client (Alumne)
-
-Enviem un missatge de prova amb la comanda `logger`:
-
-```
-logger "prova d’enviament de logs"
-```
-
-I tal com es veu a la captura, ho ha rebut correctament:
-
-![Recepció dels logs](https://github.com/user-attachments/assets/46ea9d4c-5cdd-4f0f-b5a1-86968e57fade)
-
----
-
-# Conclusió
-
-Amb aquesta configuració hem aconseguit implementar un sistema de **centralització de logs** utilitzant `rsyslog`.
-
-Això permet que un servidor rebi i emmagatzemi els registres de múltiples màquines, facilitant:
-
-* la **monitorització del sistema**
-* la **detecció d’errors**
-* l’**anàlisi de seguretat**
-
-Aquest tipus de configuració és molt utilitzada en **infraestructures de sistemes i xarxes** per tenir un control centralitzat de tots els esdeveniments del sistema.
-
----
-
-
-
-# Servidor d'Actualitzacions
-
-**Data:** 09/03/26
-
-Aquesta documentació explica com configurar un servidor local d'actualitzacions amb `apt-mirror` i Apache, i com configurar un client per obtenir paquets des d’aquest servidor.
-
----
-
-## 1. Obrir el servidor
-
-Accedim com a root:
-
-```
-sudo su
-```
-
-Actualitzem els repositoris:
-
-```
-apt update
-```
-
-Instal·lem Apache2:
-
-```
-apt install apache2
-```
-
-![Apache instal·lat](https://github.com/user-attachments/assets/c6d88018-875c-4891-b17b-3fed85095733)
-
-Instal·lem `apt-mirror`:
-
-```
-apt install apt-mirror
-```
-
-![Apt-mirror instal·lat](https://github.com/user-attachments/assets/9c8c385f-f0db-4e80-bb24-4873e5de5858)
-
----
-
-## 2. Configurar `apt-mirror`
-
-Editem la configuració:
-
-```
-nano /etc/apt/mirror.list
-```
-
-* Afegim tots els repositoris que volem descarregar al servidor local.
-* D’aquesta manera, els clients no hauran de descarregar els paquets d’internet.
-* Per a la prova, comentem tots els altres repositoris i afegim només el de Google Chrome.
-
-![Configuració mirror.list](https://github.com/user-attachments/assets/8dfb681b-44de-4dd7-8897-4c4fade3c069)
-
-Executem la descàrrega dels paquets:
-
-```
-apt-mirror
-```
-
-![Execució apt-mirror](https://github.com/user-attachments/assets/4cb18ca3-68ee-49cf-93eb-6bfc22c24901)
-
----
-
-## 3. Configurar Apache
-
-Creem un **softlink** per servir els paquets amb Apache:
-
-```
-ln -s /var/spool/apt-mirror/mirror/dl.google.com/linux/chrome/deb /var/www/html/
-```
-
-![Softlink creat](https://github.com/user-attachments/assets/0f47648b-d9b5-45e8-a12d-0caf98b9c944)
-
-Verifiquem que el softlink s’ha creat correctament:
-
-![Verificació softlink](https://github.com/user-attachments/assets/a53ace71-5df1-42cd-b8e3-b7348bd4414a)
-
-Comprovem la IP del servidor (en aquest exemple `10.0.2.9`):
-
-![IP del servidor](https://github.com/user-attachments/assets/24cdcfce-a646-42c5-8754-3ff2e09418e3)
-
----
-
-## 4. Configurar el client
-
-Obrim el fitxer de repositoris del client:
-
-```
-nano /etc/apt/sources.list
-```
-
-![Sources.list client](https://github.com/user-attachments/assets/abe74f5b-1515-474a-af9f-a00c40a2acb9)
-
-Com que Google Chrome necessita signatura, la importem:
-
-![Signatura Chrome](https://github.com/user-attachments/assets/bd56d477-e673-4cf1-a3c2-771ea4cf20f9)
-
-Fem un `apt update` per comprovar que el client obté els paquets del servidor local:
-
-![Apt update client](https://github.com/user-attachments/assets/05e5dd6b-010a-44a7-ad4f-3a7fc0214330)
-
-Instal·lem el paquet des del servidor:
-
-```
-apt install google-chrome-stable
-```
-
-![Instal·lació Chrome](https://github.com/user-attachments/assets/feb84d4a-a253-46c7-a5d9-23b3ba70c911)
-
-I tal com es veu a la captura s'ha instal·lat correctament:
-<img width="400" height="252" alt="image" src="https://github.com/user-attachments/assets/b496a703-459b-40d3-9ee3-a0b03250142f" />
-
----
-
-# Tasca Servidor d'Actualitzacions (Amb un altre paquet)
-
-Ara repetiré el procés fet a classe amb un altre paquet, per exemple **Opera**.
-
-
-
-## 1. Configurar `apt-mirror`
-Accedim com a root:
-
-```
-sudo su
-````
-
-Editem la configuració:
-
-```
-nano /etc/apt/mirror.list
-```
-
-* Afegim el repositori de opera
-```
-deb [arch=amd64] https://deb.opera.com/opera-stable/ stable non-free
-```
-<img width="891" height="420" alt="image" src="https://github.com/user-attachments/assets/0f7c0941-9f2b-4804-8dde-79e612d92998" />
-
-
-
-Executem la descàrrega dels paquets:
-
-```
-apt-mirror
-```
-
-<img width="883" height="612" alt="image" src="https://github.com/user-attachments/assets/3855d332-423a-4927-8885-842069f5f2fe" />
+<img width="614" height="470" alt="image" src="https://github.com/user-attachments/assets/b776fff0-b992-4fdb-82bb-263933315863" />
 
 
 ---
 
-## 2. Configurar Apache
+# Monitorització
 
-Creem un **softlink** per servir els paquets amb Apache:
+## Introducció
 
-```
-ln -s /var/spool/apt-mirror/mirror/deb.opera.com/opera-stable /var/www/html/
-```
+La monitorització del sistema permet controlar l’estat i el rendiment dels recursos d’un ordinador en temps real. Amb eines com l’Administrador de tasques o el Monitor de recursos es pot observar el consum de CPU, memòria, disc i xarxa, així com detectar possibles problemes de rendiment o processos sospitosos.
 
-<img width="1067" height="24" alt="image" src="https://github.com/user-attachments/assets/2769aba8-b251-4f8b-b865-3ad53955e2b0" />
+### CPU
 
+La CPU mostra els processos que s’estan executant i el percentatge de processador que consumeix cadascun. També es poden veure dades com el PID, el nombre de fils o els serveis relacionats amb cada procés.
 
-Verifiquem que el softlink s’ha creat correctament:
+**Aspectes importants:**
+- **Ús de CPU (%):** indica la càrrega que genera un procés sobre el processador. Un consum molt elevat durant molta estona pot afectar el rendiment del sistema.
+- **PID (Process ID):** identificador únic de cada procés.
+- **Nom del procés:** ajuda a identificar aplicacions conegudes o detectar activitats anormals.
 
-<img width="612" height="45" alt="image" src="https://github.com/user-attachments/assets/3ffc8b65-2efb-4ac3-9998-e1470c757237" />
+### Memòria RAM
 
----
+Aquest apartat permet veure quanta memòria utilitza cada aplicació i l’estat general de la RAM del sistema.
 
-## 3. Configurar el client
+**Aspectes importants:**
+- **Memòria en ús:** RAM que està ocupant un procés.
+- **Memòria disponible:** memòria lliure que el sistema pot utilitzar.
+- **Memòria virtual:** combinació entre la RAM física i el fitxer de paginació del disc.
 
-Obrim el fitxer de repositoris del client. I afegim aquesta linea:
+### Disc
 
-```
-nano /etc/apt/sources.list
-```
+La monitorització del disc mostra els processos que estan llegint o escrivint dades i la velocitat amb què ho fan.
 
-<img width="839" height="162" alt="image" src="https://github.com/user-attachments/assets/e2dbac02-f5ca-4487-b572-82639fbef390" />
+**Aspectes importants:**
+- **Lectura i escriptura (B/s):** quantitat de dades transferides al disc.
+- **Temps de resposta:** temps que tarda el disc a respondre una petició.
+- **Cua de disc:** indica si el disc està saturat de processos.
 
+### Xarxa
 
+L’apartat de xarxa permet controlar les connexions actives i les aplicacions que estan enviant o rebent dades.
 
-Fem un `apt update` per comprovar que el client obté els paquets del servidor local:
+**Aspectes importants:**
+- **Ús de xarxa (%):** càrrega de la connexió.
+- **Ports locals i remots:** ports utilitzats per les aplicacions.
+- **IP remota:** servidor o dispositiu amb qui es comunica el sistema.
 
-<img width="458" height="66" alt="image" src="https://github.com/user-attachments/assets/68df875e-94f8-4872-a446-16fac39f124e" />
+# Pràctica
 
-I tal com es veu a la captura s'ha instal·lat correctament:
-<img width="403" height="218" alt="image" src="https://github.com/user-attachments/assets/efe57e9a-d310-4f9e-a1ed-aab0d77ea588" />
+1. Primer obrim l’**Administrador de tasques** utilitzant la combinació de tecles **Ctrl + Shift + Esc**.
 
+<img width="669" height="650" alt="image" src="https://github.com/user-attachments/assets/06259640-e14e-4f77-878a-d7e1d16a57eb" />
 
----
+2. Dins l’Administrador de tasques podem observar el consum de recursos de totes les aplicacions i serveis actius del sistema. També és possible veure la informació separada per usuaris.
+
+<img width="674" height="596" alt="image" src="https://github.com/user-attachments/assets/5418a4a1-cf69-418c-b4b1-607146d6fc0f" />
+
+<img width="685" height="650" alt="image" src="https://github.com/user-attachments/assets/a47f2177-165c-42c0-80fa-864177af56e7" />
+
+<img width="668" height="657" alt="image" src="https://github.com/user-attachments/assets/40de3f0a-204f-471d-b443-2b1cce28d8a5" />
+
+3. Una altra eina molt útil és el **Monitor de recursos**, que ofereix informació més detallada sobre el funcionament dels processos, serveis i recursos del sistema.
+
+<img width="785" height="644" alt="image" src="https://github.com/user-attachments/assets/a98d96ff-dfa8-4237-be2e-d5dcf518da7d" />
+
+4. A la pestanya de CPU podem consultar els processos actius, el percentatge de processador que consumeixen i altres dades relacionades amb el rendiment.
+
+<img width="774" height="664" alt="image" src="https://github.com/user-attachments/assets/da3ff1d1-dd64-4898-8796-cf6b4dbc0b1b" />
+
+5. A l’apartat de memòria es mostra l’ús de la RAM i l’estat de la memòria disponible del sistema.
+
+<img width="767" height="660" alt="image" src="https://github.com/user-attachments/assets/3593fe5b-8256-40b2-92e5-7b95bef51745" />
+
+6. També podem consultar l’activitat del disc, observant els processos que estan llegint o escrivint dades.
+
+<img width="795" height="630" alt="image" src="https://github.com/user-attachments/assets/45aa5c32-6309-4e71-a400-b0dfe811adf8" />
+
+7. Finalment, a la secció de xarxa es poden veure les connexions actives i l’ús de la xarxa de cada aplicació.
+
+<img width="776" height="674" alt="image" src="https://github.com/user-attachments/assets/5e2b4319-9683-4379-9b16-b5b9320743f6" />

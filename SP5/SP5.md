@@ -3,12 +3,13 @@ layout: default
 title: "Sprint 5: Monitoratge, Auditories i Programari Client/Servidor"
 ---
 
-# Índex
-## 1a Part - Auditories
+## Índex
+
+### 1a Part - Autorització i auditories en Windows
 - [Introducció](#autoritzacio-i-auditories-en-windows)
 - [Pràctica](#practica-auditories)
 
-## 2a Part - Monitorització
+### 2a Part - Monitorització
 - [Introducció](#monitoritzacio)
 - [Pràctica](#practica-monitoritzacio)
   
